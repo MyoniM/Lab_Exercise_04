@@ -72,11 +72,46 @@ function withdraw() {
 	} else alert('Error signing in. Please check your credentials.');
 }
 
+//transefer
+function transfer() {
+	let accountName = prompt('Enter your account name: ');
+	let accNum = parseInt(prompt('Enter your account number: '));
+	let pass = parseInt(prompt('Enter your passcode: '));
+
+	if (accountName == user1.name && accNum == user1.accNum && pass == user1.pass) {
+		alert(`Signed in as ${user1['name']}`);
+
+		let transferAccountNumber = parseInt(prompt('Enter the account number you are transferring money to'));
+		let transferAmount = parseFloat(prompt('Enter amount to transfer'));
+
+		if (transferAmount <= user1.balance) {
+			if (transferAccountNumber == user2.accNum) {
+				user2.balance += transferAmount;
+				user1.balance -= transferAmount;
+				alert(`Success, Your new account balance is: ${user1['balance']}`);
+			}
+		} else alert(`You can\'t transfer. Your current balance is ${user1.balance}`);
+	} else if (accountName == user2.name && accNum == user2.accNum && pass == user2.pass) {
+		alert(`Signed in as ${user2['name']}`);
+
+		let transferAccountNumber = parseInt(prompt('Enter the account number you are transferring money to'));
+		let transferAmount = parseFloat(prompt('Enter amount to transfer'));
+
+		if (transferAmount <= user2.balance) {
+			if (transferAccountNumber == user1.accNum) {
+				user1.balance += transferAmount;
+				user2.balance -= transferAmount;
+				alert(`Success, Your new account balance is: ${user2['balance']}`);
+			}
+		} else alert(`You can\'t transfer. Your current balance is ${user2.balance}`);
+	} else alert('Error signing in. Please check your credentials.');
+}
+
 var condition = true;
 while (condition) {
-	(function () {
+	(() => {
 		var choice = prompt(
-			'Choose operation: \n 1 for Balance \n 2 for Deposit \n 3 for Withdrawal \n 4 for Transfer \n 5 for Exit'
+			'Choose operation: \n 1 for Balance \n 2 for Deposit \n 3 for Withdrawal \n 4 for Transfer \n 5 to Exit'
 		);
 
 		if (choice == 1) {
@@ -86,7 +121,7 @@ while (condition) {
 		} else if (choice == 3) {
 			withdraw();
 		} else if (choice == 4) {
-			// transfer();
+			transfer();
 		} else if (choice == 5) {
 			condition = !condition;
 		}
