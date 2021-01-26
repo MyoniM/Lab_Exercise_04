@@ -12,6 +12,21 @@ var user2 = {
 	balance: 2000.0,
 };
 
+//balance
+function balance() {
+	let accountName = prompt('Enter your account name: ');
+	let accNum = parseInt(prompt('Enter your account number: '));
+	let pass = parseInt(prompt('Enter your passcode: '));
+
+	if (accountName == user1.name && accNum == user1.accNum && pass == user1.pass) {
+		alert(`Signed in as ${user1['name']}`);
+		alert(`Your balance is ${user1['balance']}`);
+	} else if (accountName == user2.name && accNum == user2.accNum && pass == user2.pass) {
+		alert(`Signed in as ${user2['name']}`);
+		alert(`Your balance is ${user2['balance']}`);
+	} else alert('Error signing in. Please check your credentials.');
+}
+
 //deposit
 function deposit() {
 	let accountName = prompt('Enter your account name: ');
@@ -22,12 +37,12 @@ function deposit() {
 		alert(`Signed in as ${user1['name']}`);
 		let depositMoney = parseFloat(prompt('How much money are you depositing?'));
 		user1.balance += depositMoney;
-		alert(`Success, Your new account balance is: ${user1[balance]}`);
+		alert(`Success, Your new account balance is: ${user1['balance']}`);
 	} else if (accountName == user2.name && accNum == user2.accNum && pass == user2.pass) {
 		alert(`Signed in as ${user2['name']}`);
 		let depositMoney = parseFloat(prompt('How much money are you depositing?'));
 		user2.balance += depositMoney;
-		alert(`Success, Your new account balance is: ${user2[balance]}`);
+		alert(`Success, Your new account balance is: ${user2['balance']}`);
 	} else alert('Error signing in. Please check your credentials.');
 }
 
